@@ -1,6 +1,8 @@
-# NeoPrism Frontend Scaffold
+# NeoPrism
 
-Modern Deluxe Paint clone targeting React 19 + TypeScript + Vite. This repo already follows the architecture described in `docs/Alpha Master Specs/NeoPrism Project Spec.md` and the ordered epics grouped by release under `docs/epics/` (for example, `docs/epics/0.1.0-Alpha-Specs/`). Story write-ups live beside their respective release folders under `docs/stories/` (e.g., `docs/stories/0.1.0-Alpha-Stories/`), so grab the one matching the milestone you’re working on.
+A faithful web-based clone of Deluxe Paint II–IV (including AGA), built with React 19, TypeScript, and Vite.
+
+NeoPrism recreates the tools, workflows, and capabilities of the classic Amiga Deluxe Paint series with a modern UI that feels natural in the browser.
 
 ## Project Structure
 
@@ -17,8 +19,6 @@ src/
   styles/       // CSS modules/global styles
 ```
 
-Docs live under `docs/`, split into release-specific `epics/<version>-Specs/` folders (high-level specs) and `stories/<version>-Stories/` folders (detailed tickets). Follow `docs/stories/backlog.md` when prioritizing work; master specs live in `docs/Alpha Master Specs/`.
-
 ## Commands
 
 - `npm run dev` – Vite dev server with HMR
@@ -27,28 +27,17 @@ Docs live under `docs/`, split into release-specific `epics/<version>-Specs/` fo
 - `npm run lint` / `npm run lint:fix` – ESLint (strict React 19 + TS)
 - `npm run format` / `npm run format:check` – Prettier (2 spaces, single quotes, trailing commas)
 - `npm run test` – Vitest watch mode (jsdom)
-- `npm run test:run` – Vitest run (CI)
-- `npm run test:coverage` – Vitest run with `@vitest/coverage-v8`
+- `npm run test:run` – Vitest single run (CI)
+- `npm run test:coverage` – Vitest with coverage
 
-Before committing, run `npm run prepare` once locally to install Husky so `npx lint-staged` executes on staged files.
+## Testing
 
-## Specs & Roadmap
+Vitest + React Testing Library are preconfigured via `vitest.setup.ts`. Place tests next to source files (`*.test.tsx`) or under `__tests__` folders.
 
-- [Epics overview + release map](docs/epics/README.md)
-- [Story backlog (latest)](docs/stories/backlog.md)
-- [Master specs](<docs/Alpha\ Master\ Specs/NeoPrism\ Project\ Spec.md>) _(DPaint MVP details)_
+## Setup
 
-## Testing Strategy
-
-Vitest + React Testing Library are preconfigured via `vitest.setup.ts`. Place tests next to source files (`*.test.tsx`) or under `__tests__` folders. Snapshot-less assertions are preferred; use jest-dom matchers.
-
-## Recommended VS Code Setup
-
-- Install extensions: Prettier, ESLint, ES7+ React Snippets, GitLens, Hex Editor, Error Lens, Vitest Runner.
-- Workspace settings (`.vscode/settings.json`) enforce Prettier as default formatter, 2-space tabs, format-on-save, and use the workspace TypeScript SDK.
-
-## Contributing
-
-1. Pick the next open story from the backlog and read its epic.
-2. Follow AGENTS.md/README guidance, keep commits small, include `npm run test:run` output in PR descriptions.
-3. Update story files to mark completed work.
+```bash
+npm install
+npm run prepare   # install Husky pre-commit hooks
+npm run dev
+```
