@@ -39,3 +39,23 @@ export const registerCycleToggleShortcut = (): (() => void) => {
     window.removeEventListener('keydown', handler)
   }
 }
+
+export const registerPaletteEditorShortcut = (onOpen: () => void): (() => void) => {
+  const handler = (evt: KeyboardEvent) => {
+    const isPKey =
+      evt.key.toLowerCase() === 'p' &&
+      !evt.metaKey &&
+      !evt.ctrlKey &&
+      !evt.shiftKey &&
+      !evt.altKey
+    if (!isPKey) {
+      return
+    }
+    evt.preventDefault()
+    onOpen()
+  }
+  window.addEventListener('keydown', handler)
+  return () => {
+    window.removeEventListener('keydown', handler)
+  }
+}
