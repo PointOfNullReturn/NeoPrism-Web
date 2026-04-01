@@ -15,7 +15,11 @@ import '../../styles/layout/Menubar.css'
 
 const ZOOM_LEVELS = [1, 2, 4, 8, 16, 32] as const
 
-export const Menubar = () => {
+interface MenubarProps {
+  onOpenPaletteEditor?: () => void
+}
+
+export const Menubar = ({ onOpenPaletteEditor }: MenubarProps) => {
   const [openMenu, setOpenMenu] = useState<string | null>(null)
   const [isMenuActive, setIsMenuActive] = useState(false)
   const [hoveredLabel, setHoveredLabel] = useState<string | null>(null)
@@ -198,6 +202,12 @@ export const Menubar = () => {
             action: () => {
               setCycleAnimationEnabled((current) => !current)
             },
+          },
+          {
+            type: 'item',
+            label: 'Palette Editor...',
+            action: onOpenPaletteEditor,
+            shortcut: 'P',
           },
         ],
       },

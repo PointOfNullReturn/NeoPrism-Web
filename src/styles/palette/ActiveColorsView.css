@@ -1,0 +1,16 @@
+.active-colors-view {
+  width: 48px;
+  height: 48px;
+  border: 1px solid #000;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+}
+
+.active-colors-view__circle {
+  width: 32px;
+  height: 32px;
+  border-radius: 50%;
+  border: 1px solid #000;
+}

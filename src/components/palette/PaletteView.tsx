@@ -18,7 +18,11 @@ const clampIndex = (index: number, max: number): number => {
 
 const columns = 16
 
-export const PaletteView = memo(() => {
+interface PaletteViewProps {
+  disableBackgroundSelection?: boolean
+}
+
+export const PaletteView = memo(({ disableBackgroundSelection = false }: PaletteViewProps) => {
   const palette = usePalette()
   const setForegroundIndex = useEditorStore((state) => state.setForegroundIndex)
   const setBackgroundIndex = useEditorStore((state) => state.setBackgroundIndex)
@@ -65,7 +69,10 @@ export const PaletteView = memo(() => {
             onPointerDown={(event) => {
               event.preventDefault()
               if (event.button === 2) {
-                setBackgroundIndex(index)
+                if (!disableBackgroundSelection) {
+                  setBackgroundIndex(index)
+                }
+                // Right-click does nothing when background selection is disabled
               } else {
                 setForegroundIndex(index)
               }
@@ -91,7 +98,10 @@ export const PaletteView = memo(() => {
                 case ' ': {
                   event.preventDefault()
                   if (event.shiftKey) {
-                    setBackgroundIndex(index)
+                    if (!disableBackgroundSelection) {
+                      setBackgroundIndex(index)
+                    }
+                    // Shift+Enter/Space does nothing when background selection is disabled
                   } else {
                     setForegroundIndex(index)
                   }
